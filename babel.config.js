@@ -1,12 +1,12 @@
 module.exports = function(api) {
   api.cache(true);
   return {
-    presets: ['babel-preset-expo'],
-    // If you add custom plugins, list them here.
-    plugins: [
-      // Allow parsing of Flow type-only syntax (e.g. `export type {}`) which
-      // can appear in packages inside node_modules that ship type-only exports.
-      '@babel/plugin-syntax-flow',
+    presets: [
+      'babel-preset-expo',
+      // Include NativeWind / react-native-css-interop preset which returns { plugins: [...] }
+      require('nativewind/babel'),
     ],
+    // Do not list nativewind/babel inside plugins; it is a preset-like factory returning an object.
+    plugins: [],
   };
 };
